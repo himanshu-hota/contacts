@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from "react";
+import { useDispatch } from "react-redux/es/exports";
+import { getContactsfromAPI } from "./store/contactSlice";
+import ContactBook from "./components/ContactBook";
+import RootLayout from "./Layout/RootLayout";
+import EditContact from "./components/EditContact";
+import {createBrowserRouter,RouterProvider,} from "react-router-dom";
+import ErrorPage from "./components/ErrorPage";
+
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element:<RootLayout />,
+    errorElement:<ErrorPage />,
+    children: [
+      {index:true , element:<ContactBook />},
+      {path:':contactId',element:<EditContact />  }
+    ]
+  },
+]);
+
 
 function App() {
+ 
+  const dispatch = useDispatch();
+
+useEffect(() => {
+  dispatch(getContactsfromAPI());
+}, [dispatch])
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <RouterProvider router={router} />
+    </>
+  )
 }
 
 export default App;
