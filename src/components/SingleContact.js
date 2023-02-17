@@ -9,10 +9,10 @@ const SingleContact = () => {
 
 
     const singleContact = useSelector(state => state.contact.singleContact);
+    
     const { id, name, email, phone, username, website, address } = singleContact;
-    console.log('edit');
+    
     const handleEdit = () => {
-        console.log('edit clicked!!');
         navigate(`${id}`);
     }
     

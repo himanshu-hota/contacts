@@ -4,14 +4,23 @@ import { getSingleContactfromAPI } from "../store/contactSlice";
 
 
 const ContactList = () => {
-
     const dispatch = useDispatch();
-    const contacts  = useSelector(state => state.contact.contacts);
+    const contacts = useSelector(state => state.contact.contacts);  
+    
     const setContactId = (e) => {
-        const selectedContactID = Number(e.target.getAttribute("id")) + 1;
-        dispatch(getSingleContactfromAPI(selectedContactID));
+        const check =e.target.getAttribute("id");
+        
+        // const selectedContactID = Number(e.target.getAttribute("id")) + 1;
+        // dispatch(getSingleContactfromAPI(selectedContactID-1));
+        dispatch(getSingleContactfromAPI(check));
     }
 
+    if(contacts.length === 0 ){
+
+        return <>
+         <p className="text-center text-xl text-white italic ">Kindly add contacts to show</p>
+        </>
+    }
 
     return (
         <>
@@ -25,7 +34,7 @@ const ContactList = () => {
                                     <h3>{contact.name}</h3>
                                 </div>
                             </div>
-                            <p className='italic text-gray-900 active:text-red-600' onClick={setContactId} id={idx}>See</p>
+                            <p className='italic text-gray-900 active:text-red-600' onClick={setContactId} id={contact.id}>See</p>
                         </div>)
                 })}
         </>
