@@ -2,10 +2,15 @@ import React from 'react';
 import { useForm } from "react-hook-form";
 const Form = ({submitFunction,data,children}) => {
 
-
+    // get function from hook
     const { register, handleSubmit, formState: { errors } } = useForm();
 
+    //Form validation using React-Hook-Form
+    // Read more : https://react-hook-form.com/get-started/
+
     return (<>
+
+        {/* Form */}
         <form className='w-full h-full' onSubmit={handleSubmit(submitFunction)}>
             <div className='w-full text-xl grid grid-cols-1 md:grid-cols-2'>
                 <label htmlFor="name" >Name : </label>
@@ -47,7 +52,7 @@ const Form = ({submitFunction,data,children}) => {
                 </div>
 
             </div>
-            
+                {/* Show all buttons here  */}
                 {children}
       
         </form>

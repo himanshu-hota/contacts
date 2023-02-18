@@ -4,14 +4,14 @@ import { useNavigate} from "react-router-dom";
 
 
 const SingleContact = () => {
-
+    // hook to navigate
     const navigate = useNavigate();
-
-
+    // get data from store
     const singleContact = useSelector(state => state.contact.singleContact);
-    
+    // destructure data
     const { id, name, email, phone, username, website, address } = singleContact;
     
+    // redirect to EditPage when edit button is clicked
     const handleEdit = () => {
         navigate(`${id}`);
     }

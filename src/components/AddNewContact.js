@@ -6,15 +6,18 @@ import { useNavigate } from "react-router-dom";
 
 const AddNewContact = () => {
 
+  // react router hooks
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
 
+  // function to submit data
   const handleSubmit = (formData) => {
+    // generate unique id for the contact
     let id = "id" + Math.random().toString(16).slice(2);
-
+    // destructure data 
     const { name, username, city, email, phone, website, street, zipcode } = { ...formData };
-
+    // set data in a format for the store
     const finalUpdate = {
       id,
       name,
@@ -28,8 +31,9 @@ const AddNewContact = () => {
         street
       }
     }
-
+      // add contact to the store
       dispatch(addContacts(finalUpdate));
+      // Go to home
       navigate('..');
   }
 

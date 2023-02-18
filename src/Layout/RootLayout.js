@@ -5,7 +5,9 @@ const RootLayout = () => {
 
     return (
         <>
-            <Navbar />
+            {/* Show navigation in all components */}
+            <Navbar />  
+            {/* Show the all components here */}
             <Outlet />
         </>
     )

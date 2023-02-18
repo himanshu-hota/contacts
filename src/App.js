@@ -8,14 +8,16 @@ import {createBrowserRouter,RouterProvider,} from "react-router-dom";
 import ErrorPage from "./components/ErrorPage";
 import AddNewContact from "./components/AddNewContact";
 
+
+// Defining all routes here
 const router = createBrowserRouter([
   {
     path: "/",
-    element:<RootLayout />,
+    element:<RootLayout />, //Wrapper component for all elements
     errorElement:<ErrorPage />,
     children: [
       {index:true , element:<ContactBook />},
-      {path:':contactId',element:<EditContact />  },
+      {path:':contactId',element:<EditContact /> },
       { path: 'add-new-contact', element: <AddNewContact /> }
     ]
   },
@@ -24,11 +26,12 @@ const router = createBrowserRouter([
 
 function App() {
  
+  // Dispatch functino to dispactch actions to redux
   const dispatch = useDispatch();
 
 useEffect(() => {
   dispatch(setLoading(true));
-  dispatch(getContactsfromAPI());
+  dispatch(getContactsfromAPI()); // Get data from store as welll as API
   dispatch(setLoading(false));
 }, [dispatch])
 
